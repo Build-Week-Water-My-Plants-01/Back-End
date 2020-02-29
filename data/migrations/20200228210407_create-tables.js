@@ -42,6 +42,7 @@ exports.up = function(knex) {
     .createTable("user_plants", tbl => {
       //   user_plants table
       tbl.primary(["user_id", "plant_id"]);
+      tbl.text("nickname", 255).notNullable();
       tbl
         .integer("user_id")
         .notNullable()

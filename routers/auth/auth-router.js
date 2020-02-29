@@ -18,7 +18,11 @@ router.post("/register", async (req, res) => {
           });
         } else {
           userData.password = hash;
-          const token = getToken(userData);
+
+          const token = getToken({
+            username: userData.username,
+            password: userData.password
+          });
           const user = await Auth.add(userData);
 
           res.status(201).json({ user, token });
