@@ -10,6 +10,7 @@ router.post("/register", async (req, res) => {
   const userData = req.body;
 
   if (userData.username && userData.password && userData.phone_number) {
+    console.log()
     try {
       bc.hash(userData.password, 10, async (err, hash) => {
         if (err) {
