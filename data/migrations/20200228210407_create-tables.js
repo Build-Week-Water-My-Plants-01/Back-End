@@ -25,49 +25,32 @@ exports.up = function(knex) {
       // plants table
       tbl.increments();
       tbl
-        .text("name", 255)
+        .text("nickname", 255)
         .notNullable()
-        .unique()
         .index();
+
+      tbl.text("h2o_frequency").notNullable();
+      tbl.text("image");
       tbl
-        .integer("species_id")
-        .notNullable()
-        .unsigned()
-        .references("id")
+        .text("species_name")
+        .references("name")
         .inTable("species")
         .onDelete("CASCADE")
         .onUpdate("CASCADE");
-    })
 
-    .createTable("user_plants", tbl => {
-      //   user_plants table
-      tbl.primary(["user_id", "plant_id"]);
-      tbl.text("nickname", 255).notNullable();
       tbl
         .integer("user_id")
-        .notNullable()
         .unsigned()
+        .notNullable()
         .references("id")
         .inTable("users")
         .onDelete("CASCADE")
         .onUpdate("CASCADE");
-      tbl
-        .integer("plant_id")
-        .notNullable()
-        .unsigned()
-        .references("id")
-        .inTable("plants")
-        .onDelete("CASCADE")
-        .onUpdate("CASCADE");
-
-      tbl.text("h2o_frequency", 255).notNullable();
-      tbl.text("image");
     });
 };
 
 exports.down = function(knex) {
   return knex.schema
-    .dropTableIfExists("user_plants")
     .dropTableIfExists("plants")
     .dropTableIfExists("species")
     .dropTableIfExists("users");
