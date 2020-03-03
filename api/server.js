@@ -6,7 +6,7 @@ const cors = require("cors");
 const authRouter = require("../routers/auth/auth-router.js");
 const userRouter = require("../routers/users/user-router.js");
 // middleware imports
-
+const { cloudConfig } = require("../api/config/cloud-config.js");
 const restricted = require("../api/middlewares/restricted.js");
 
 const server = express();
@@ -15,6 +15,7 @@ const server = express();
 server.use(helmet());
 server.use(express.json());
 server.use(cors());
+server.use("*", cloudConfig);
 
 // routers
 server.use("/api/auth", authRouter);
