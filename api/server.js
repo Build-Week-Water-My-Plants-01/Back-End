@@ -6,8 +6,8 @@ const cors = require("cors");
 const authRouter = require("../routers/auth/auth-router.js");
 const userRouter = require("../routers/users/user-router.js");
 // middleware imports
-const { cloudConfig } = require("../api/config/cloud-config.js");
 const restricted = require("../api/middlewares/restricted.js");
+const { cloudConfig } = require("../api/config/cloud-config.js");
 
 const server = express();
 
