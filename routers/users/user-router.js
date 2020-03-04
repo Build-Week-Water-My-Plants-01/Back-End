@@ -31,6 +31,22 @@ router.get("/:id", async (req, res) => {
     res.status(404).json({ error: "User not found!" });
   }
 });
+// get plants by id
+router.get('/:id/plants', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    if (id) {
+      const plants = await Users.getPlants(id);
+      res.status(200).json(plants);
+    } else {
+      res.status(404).json({ message: "Invalid id" });
+    }
+  } catch (error) {
+    res.status(500).json(error)
+  }
+});
+
 
 // adding a plant
 router.post(
@@ -54,7 +70,7 @@ router.post(
   }
 );
 
-//   editing a plant
+// editing a plant
 router.put(
   "/:id/plants/:plantid",
   validateId,
@@ -74,5 +90,20 @@ router.put(
     }
   }
 );
+
+router.delete('/:id/plants/:plantid', async (req, res) => {
+  const { id, plantid } = req.params;
+  console.log(id, plantid)
+  try {
+    if (id && plantid) {
+      const deletedPlant = await Users.removePlant(plantid)
+      res.status(200).json(deletedPlant)
+    } else {
+      res.status(404).json({ message: 'Invalid id or plantid.' })
+    }
+  } catch (error) {
+    res.status(500).json(error)
+  }
+});
 
 module.exports = router;
