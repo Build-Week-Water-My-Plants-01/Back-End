@@ -9,7 +9,7 @@ exports.seed = function(knex) {
     },
     {
       username: "demo",
-      password: bc.hashSync("demo", 10),
+      password: bc.hashSync("demo", 8),
       phone_number: "(111)111-111-111"
     },
     {

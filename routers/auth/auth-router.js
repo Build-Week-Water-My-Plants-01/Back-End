@@ -10,6 +10,7 @@ router.post("/register", async (req, res) => {
   const userData = req.body;
 
   if (userData.username && userData.password && userData.phone_number) {
+    console.log()
     try {
       const existingUser = await Auth.getBy({ username: userData.username });
 
