@@ -6,6 +6,7 @@ exports.seed = function(knex) {
     { name: "malvaceae" },
     { name: "pilea" },
     { name: "fig trees" },
-    { name: "araceae" }
+    { name: "araceae" },
+    { name: "default" }
   ]);
 };

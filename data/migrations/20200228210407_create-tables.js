@@ -33,6 +33,7 @@ exports.up = function(knex) {
       tbl.text("image");
       tbl
         .text("species_name")
+        .unsigned()
         .references("name")
         .inTable("species")
         .onDelete("CASCADE")
