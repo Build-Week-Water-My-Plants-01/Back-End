@@ -73,6 +73,24 @@ function addSpecies(species) {
     });
 }
 
+// just for editing the user because I don't want to return the password
+// of the user when getUserById is run during login
+function getUserWithPassword(id) {
+  return db("users")
+    .where({ id })
+    .first();
+}
+function updateUser(userData, id) {
+  return db("users")
+    .where({ id })
+    .update(userData)
+    .then(user => {
+      return db("users")
+        .where({ id })
+        .first();
+    });
+}
+
 module.exports = {
   getPlants,
   getUserById,
@@ -81,5 +99,7 @@ module.exports = {
   getSpecies,
   addSpecies,
   addPlant,
-  updatePlant
+  updatePlant,
+  getUserWithPassword,
+  updateUser
 };
